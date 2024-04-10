@@ -30,7 +30,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardprops) {
   function handleSaveNote(event: FormEvent) {
     event.preventDefault()
 
-    if (content === ''){ 
+    if (content === '') {
       return
     }
 
@@ -43,17 +43,13 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardprops) {
   }
 
   function handleStartRecording() {
-
-    
-
     const isSpeechRecognitionAPIAvailable = 'SpeechRecognition' in window
-    || 'webkitSpeechRecognition' in window 
+      || 'webkitSpeechRecognition' in window
 
-    if (!isSpeechRecognitionAPIAvailable){
+    if (!isSpeechRecognitionAPIAvailable) {
       alert("Infelizmente seu navegador nao suporta a API de gravação!")
-
+      
       return
-
     }
 
     setIsRecording(true)
@@ -69,10 +65,10 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardprops) {
     speechRecognition.interimResults = true
 
     speechRecognition.onresult = (event) => {
-      const transcription = Array.from(event.results).reduce((text,result) => {
+      const transcription = Array.from(event.results).reduce((text, result) => {
         return text.concat(result[0].transcript)
-       
-      },'')
+
+      }, '')
 
       setContent(transcription)
 
@@ -84,9 +80,9 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardprops) {
 
     speechRecognition.start()
 
-   }
+  }
 
-   function handleStoptRecording() {
+  function handleStoptRecording() {
 
     setIsRecording(false)
 
@@ -141,8 +137,8 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardprops) {
             {isRecording ? (
               <button type="button" onClick={handleStoptRecording}
                 className="w-full flex items-center justify-center gap-2 bg-slate-900 py-4 text-center text-sm text-slate-300 outline-none font-medium hover:text-slate-100  ">
-                
-                <div className="size-3 rounded-full bg-red-500  animate-pulse"/>
+
+                <div className="size-3 rounded-full bg-red-500  animate-pulse" />
                 Gravando! (clique p/ interromper)
               </button>
 
